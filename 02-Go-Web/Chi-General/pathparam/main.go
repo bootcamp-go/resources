@@ -12,14 +12,14 @@ import (
 */
 func main() {
 	router := chi.NewRouter()
-	router.Get("/movies", func(w http.ResponseWriter, r *http.Request) {
+	router.Get("/movies/{id}", func(w http.ResponseWriter, r *http.Request) {
 		// request
-		name := chi.URLParam(r, "name")
+		id := chi.URLParam(r, "id")
 
 		// response
 		w.WriteHeader(http.StatusOK)
 		w.Header().Set("Content-Type", "text/plain")
-		w.Write([]byte("Movie " + name))
+		w.Write([]byte("Movie " + id))
 	})
 
 	http.ListenAndServe(":8080", router)

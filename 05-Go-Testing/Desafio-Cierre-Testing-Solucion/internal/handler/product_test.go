@@ -38,7 +38,7 @@ func TestHandlerProduct_GetProducts(t *testing.T) {
 	testCases := []testCase{
 		// case 1: success search products - no query - full
 		{
-			name: "success search products - no query",
+			name: "success search products - no query - full",
 			arrange: arrange{
 				rpMock: func() *repository.RepositoryProductMock {
 					rpMock := repository.NewRepositoryProductMock()
@@ -67,7 +67,7 @@ func TestHandlerProduct_GetProducts(t *testing.T) {
 			},
 			input: input{
 				request: func() *http.Request {
-					r := http.NewRequest()
+					r := httptest.NewRequest("GET", "/", nil)
 					return r
 				},
 				response: httptest.NewRecorder(),
@@ -99,7 +99,7 @@ func TestHandlerProduct_GetProducts(t *testing.T) {
 			},
 			input: input{
 				request: func() *http.Request {
-					r := &http.Request{}
+					r := httptest.NewRequest("GET", "/", nil)
 					return r
 				},
 				response: httptest.NewRecorder(),
@@ -137,7 +137,7 @@ func TestHandlerProduct_GetProducts(t *testing.T) {
 			},
 			input: input{
 				request: func() *http.Request {
-					r := &http.Request{}
+					r := httptest.NewRequest("GET", "/", nil)
 					q := r.URL.Query()
 					q.Add("id", "1")
 					r.URL.RawQuery = q.Encode()
@@ -171,7 +171,7 @@ func TestHandlerProduct_GetProducts(t *testing.T) {
 			},
 			input: input{
 				request: func() *http.Request {
-					r := &http.Request{}
+					r := httptest.NewRequest("GET", "/", nil)
 					q := r.URL.Query()
 					q.Add("id", "1")
 					r.URL.RawQuery = q.Encode()
@@ -203,7 +203,7 @@ func TestHandlerProduct_GetProducts(t *testing.T) {
 			},
 			input: input{
 				request: func() *http.Request {
-					r := &http.Request{}
+					r := httptest.NewRequest("GET", "/", nil)
 					return r
 				},
 				response: httptest.NewRecorder(),
@@ -237,7 +237,7 @@ func TestHandlerProduct_GetProducts(t *testing.T) {
 
 			// assert
 			require.Equal(t, tc.output.code, tc.input.response.Code)
-			require.Equal(t, tc.output.body, tc.input.response.Body.String())
+			require.JSONEq(t, tc.output.body, tc.input.response.Body.String())
 			require.Equal(t, tc.output.headers, tc.input.response.Header())
 		})
 	}

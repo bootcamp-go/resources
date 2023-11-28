@@ -31,8 +31,11 @@ func Error(w http.ResponseWriter, statusCode int, message string) {
 	}
 
 	// write response
-	w.WriteHeader(defaultStatusCode)
+	// - set header: before code due to it sets by default "text/plain"
 	w.Header().Set("Content-Type", "application/json")
+	// - set status code
+	w.WriteHeader(defaultStatusCode)
+	// - write body
 	w.Write(bytes)
 }
 

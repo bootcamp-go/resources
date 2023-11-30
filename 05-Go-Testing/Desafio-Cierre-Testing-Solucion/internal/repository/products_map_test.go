@@ -8,8 +8,8 @@ import (
 	"github.com/stretchr/testify/require"
 )
 
-// Tests for RepositoryProductsMap - SearchProducts
-func TestRepositoryProductMap_SearchProducts(t *testing.T) {
+// Tests for ProductsMap - SearchProducts
+func TestProductsMap_SearchProducts(t *testing.T) {
 	type arrange struct {
 		db func() map[int]internal.Product
 	}
@@ -188,7 +188,7 @@ func TestRepositoryProductMap_SearchProducts(t *testing.T) {
 			// arrange
 			// - db
 			db := tc.arrange.db()
-			rp := repository.NewRepositoryProductMap(db)
+			rp := repository.NewProductsMap(db)
 			
 			// act
 			p, err := rp.SearchProducts(tc.input.query)

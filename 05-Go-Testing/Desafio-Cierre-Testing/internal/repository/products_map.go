@@ -2,27 +2,27 @@ package repository
 
 import "app/internal"
 
-// NewRepositoryProductsMap returns a new RepositoryProductsMap.
-func NewRepositoryProductsMap(db map[int]internal.Product) *RepositoryProductsMap {
+// NewProductsMap returns a new ProductsMap.
+func NewProductsMap(db map[int]internal.Product) *ProductsMap {
 	// default values
 	defaultDb := make(map[int]internal.Product)
 	if db != nil {
 		defaultDb = db
 	}
 
-	return &RepositoryProductsMap{
+	return &ProductsMap{
 		db: defaultDb,
 	}
 }
 
-// ProductAttributes is an struct that implements the RepositoryProduct interface.
-type RepositoryProductsMap struct {
+// ProductAttributes is an struct that implements the RepositoryProducts interface.
+type ProductsMap struct {
 	// db is the map of products.
 	db map[int]internal.Product
 }
 
 // SearchProducts returns a list of products that match the query.
-func (r *RepositoryProductsMap) SearchProducts(query internal.ProductQuery) (p map[int]internal.Product, err error) {
+func (r *ProductsMap) SearchProducts(query internal.ProductQuery) (p map[int]internal.Product, err error) {
 	p = make(map[int]internal.Product)
 
 	// search the products

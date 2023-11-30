@@ -52,9 +52,9 @@ func (a *ApplicationDefault) TearDown() (err error) {
 func (a *ApplicationDefault) SetUp() (err error) {
 	// dependencies
 	// - repository
-	rpProduct := repository.NewRepositoryProductsMap(nil)
+	rpProduct := repository.NewProductsMap(nil)
 	// - handler
-	hdProduct := handler.NewHandlerProduct(rpProduct)
+	hdProduct := handler.NewProductsDefault(rpProduct)
 
 	// router
 	// - middleware
@@ -63,7 +63,7 @@ func (a *ApplicationDefault) SetUp() (err error) {
 	// - endpoints
 	a.rt.Route("/product", func(r chi.Router) {
 		// - GET /product
-		r.Get("/", hdProduct.GetProducts())
+		r.Get("/", hdProduct.Get())
 	})
 
 	return

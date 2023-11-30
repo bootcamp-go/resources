@@ -1,0 +1,18 @@
+mode: set
+app/platform/web/response/error.go:14.67,18.42 2 1
+app/platform/web/response/error.go:18.42,20.3 1 1
+app/platform/web/response/error.go:23.2,28.16 3 1
+app/platform/web/response/error.go:28.16,31.3 2 0
+app/platform/web/response/error.go:34.2,36.16 3 1
+app/platform/web/response/error.go:39.88,42.2 2 1
+app/platform/web/response/json.go:9.54,11.17 1 1
+app/platform/web/response/json.go:11.17,14.3 2 1
+app/platform/web/response/json.go:17.2,18.16 2 1
+app/platform/web/response/json.go:18.16,22.3 2 1
+app/platform/web/response/json.go:25.2,31.16 3 1
+app/platform/web/response/text.go:6.57,15.2 3 1
+app/platform/web/request/json.go:19.49,21.56 1 1
+app/platform/web/request/json.go:21.56,24.3 2 1
+app/platform/web/request/json.go:27.2,28.16 2 1
+app/platform/web/request/json.go:28.16,31.3 2 1
+app/platform/web/request/json.go:33.2,33.8 1 1

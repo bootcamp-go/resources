@@ -2,13 +2,13 @@ package repository
 
 import "app/internal"
 
-// NewRepositoryProductMock returns a new RepositoryProductMock.
-func NewRepositoryProductMock() *RepositoryProductMock {
-	return &RepositoryProductMock{}
+// NewProductsMock returns a new ProductsMock.
+func NewProductsMock() *ProductsMock {
+	return &ProductsMock{}
 }
 
-// RepositoryProductMock is an struct that implements the RepositoryProduct interface.
-type RepositoryProductMock struct {
+// ProductsMock is an struct that implements the Prosduct interface.
+type ProductsMock struct {
 	// FuncSearchProducts is the function that proxy the SearchProducts method.
 	FuncSearchProducts func(query internal.ProductQuery) (p map[int]internal.Product, err error)
 	// Spy
@@ -19,7 +19,7 @@ type RepositoryProductMock struct {
 }
 
 // SearchProducts returns a list of products that match the query.
-func (r *RepositoryProductMock) SearchProducts(query internal.ProductQuery) (p map[int]internal.Product, err error) {
+func (r *ProductsMock) SearchProducts(query internal.ProductQuery) (p map[int]internal.Product, err error) {
 	// spy
 	r.Spy.SearchProducts++
 

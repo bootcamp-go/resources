@@ -16,7 +16,7 @@ import (
 // Tests for HandlerProduct GetProducts method.
 func TestHandlerProduct_GetProducts(t *testing.T) {
 	type arrange struct {
-		rpMock func() *repository.RepositoryProductMock
+		rpMock func() *repository.ProductsMock
 	}
 	type input struct {
 		request  func() *http.Request
@@ -40,8 +40,8 @@ func TestHandlerProduct_GetProducts(t *testing.T) {
 		{
 			name: "success search products - no query - full",
 			arrange: arrange{
-				rpMock: func() *repository.RepositoryProductMock {
-					rpMock := repository.NewRepositoryProductMock()
+				rpMock: func() *repository.ProductsMock {
+					rpMock := repository.NewProductsMock()
 					rpMock.FuncSearchProducts = func(query internal.ProductQuery) (map[int]internal.Product, error) {
 						return map[int]internal.Product{
 							1: {
@@ -89,8 +89,8 @@ func TestHandlerProduct_GetProducts(t *testing.T) {
 		{
 			name: "success search products - no query - empty",
 			arrange: arrange{
-				rpMock: func() *repository.RepositoryProductMock {
-					rpMock := repository.NewRepositoryProductMock()
+				rpMock: func() *repository.ProductsMock {
+					rpMock := repository.NewProductsMock()
 					rpMock.FuncSearchProducts = func(query internal.ProductQuery) (map[int]internal.Product, error) {
 						return map[int]internal.Product{}, nil
 					}
@@ -118,8 +118,8 @@ func TestHandlerProduct_GetProducts(t *testing.T) {
 		{
 			name: "success search products - id query - full",
 			arrange: arrange{
-				rpMock: func() *repository.RepositoryProductMock {
-					rpMock := repository.NewRepositoryProductMock()
+				rpMock: func() *repository.ProductsMock {
+					rpMock := repository.NewProductsMock()
 					rpMock.FuncSearchProducts = func(query internal.ProductQuery) (map[int]internal.Product, error) {
 						return map[int]internal.Product{
 							1: {
@@ -161,8 +161,8 @@ func TestHandlerProduct_GetProducts(t *testing.T) {
 		{
 			name: "success search products - id query - empty",
 			arrange: arrange{
-				rpMock: func() *repository.RepositoryProductMock {
-					rpMock := repository.NewRepositoryProductMock()
+				rpMock: func() *repository.ProductsMock {
+					rpMock := repository.NewProductsMock()
 					rpMock.FuncSearchProducts = func(query internal.ProductQuery) (map[int]internal.Product, error) {
 						return map[int]internal.Product{}, nil
 					}
@@ -193,8 +193,8 @@ func TestHandlerProduct_GetProducts(t *testing.T) {
 		{
 			name: "error search products",
 			arrange: arrange{
-				rpMock: func() *repository.RepositoryProductMock {
-					rpMock := repository.NewRepositoryProductMock()
+				rpMock: func() *repository.ProductsMock {
+					rpMock := repository.NewProductsMock()
 					rpMock.FuncSearchProducts = func(query internal.ProductQuery) (map[int]internal.Product, error) {
 						return nil, errors.New("repository error")
 					}
@@ -229,7 +229,7 @@ func TestHandlerProduct_GetProducts(t *testing.T) {
 			// - repository: mock
 			rpMock := tc.arrange.rpMock()
 			// - handler: product
-			hd := handler.NewHandlerProduct(rpMock)
+			hd := handler.NewProductsDefault(rpMock)
 			hdFunc := hd.GetProducts()
 
 			// act

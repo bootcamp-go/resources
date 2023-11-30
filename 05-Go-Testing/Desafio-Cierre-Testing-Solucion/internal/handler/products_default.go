@@ -7,17 +7,17 @@ import (
 	"strconv"
 )
 
-// NewHandlerProduct returns a new HandlerProduct.
-func NewHandlerProduct(rp internal.RepositoryProduct) *HandlerProduct {
-	return &HandlerProduct{
+// NewProductsDefault returns a new ProductsDefault.
+func NewProductsDefault(rp internal.RepositoryProducts) *ProductsDefault {
+	return &ProductsDefault{
 		rp: rp,
 	}
 }
 
-// HandlerProduct is an struct that implements the HandlerProduct interface.
-type HandlerProduct struct {
+// ProductsDefault is an struct that contains handlers for products.
+type ProductsDefault struct {
 	// rp is the repository of products.
-	rp internal.RepositoryProduct
+	rp internal.RepositoryProducts
 }
 
 // ProductJSON is an struct that represents a product in JSON format.
@@ -29,7 +29,7 @@ type ProductJSON struct {
 }
 
 // GetProducts returns a list of products that match the query.
-func (h *HandlerProduct) GetProducts() http.HandlerFunc {
+func (h *ProductsDefault) GetProducts() http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		// request
 		// - query

@@ -8,13 +8,13 @@ import (
 	"app/platform/web/response"
 )
 
-// NewHandlerInvoice returns a new HandlerInvoice
-func NewHandlerInvoice(sv internal.ServiceInvoice) *HandlerInvoice {
-	return &HandlerInvoice{sv: sv}
+// NewInvoicesDefault returns a new InvoicesDefault
+func NewInvoicesDefault(sv internal.ServiceInvoice) *InvoicesDefault {
+	return &InvoicesDefault{sv: sv}
 }
 
-// HandlerInvoice is a struct that returns the invoice handlers
-type HandlerInvoice struct {
+// InvoicesDefault is a struct that returns the invoice handlers
+type InvoicesDefault struct {
 	// sv is the invoice's service
 	sv internal.ServiceInvoice
 }
@@ -27,7 +27,7 @@ type InvoiceJSON struct {
 	CustomerId int     `json:"customer_id"`
 }
 // GetAll returns all invoices
-func (h *HandlerInvoice) GetAll() http.HandlerFunc {
+func (h *InvoicesDefault) GetAll() http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		// request
 		// ...
@@ -64,7 +64,7 @@ type RequestBodyInvoice struct {
 	CustomerId int     `json:"customer_id"`
 }
 // Create creates a new invoice
-func (h *HandlerInvoice) Create() http.HandlerFunc {
+func (h *InvoicesDefault) Create() http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		// request
 		// - body
@@ -107,7 +107,7 @@ func (h *HandlerInvoice) Create() http.HandlerFunc {
 }
 
 // UpdateAllTotal updates all invoices total
-func (h *HandlerInvoice) UpdateAllTotal() http.HandlerFunc {
+func (h *InvoicesDefault) UpdateAllTotal() http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		// request
 		// ...

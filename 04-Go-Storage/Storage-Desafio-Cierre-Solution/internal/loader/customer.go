@@ -6,13 +6,13 @@ import (
 	"os"
 )
 
-// NewLoaderCustomerJSON returns a new pointer to a LoaderCustomerJSON struct.
-func NewLoaderCustomerJSON(file *os.File) *LoaderCustomerJSON {
-	return &LoaderCustomerJSON{file: file}
+// NewCustomersJSON returns a new pointer to a CustomersJSON struct.
+func NewCustomersJSON(file *os.File) *CustomersJSON {
+	return &CustomersJSON{file: file}
 }
 
-// LoaderCustomerJSON is an struct that implements the LoaderCustomer interface.
-type LoaderCustomerJSON struct {
+// CustomersJSON is an struct that implements the LoaderCustomer interface.
+type CustomersJSON struct {
 	// file is the file to handle read and write operations.
 	file *os.File
 }
@@ -26,7 +26,7 @@ type CustomerJSON struct {
 }
 
 // Load loads the customer data from the json file.
-func (l *LoaderCustomerJSON) Load() (c []internal.Customer, err error) {
+func (l *CustomersJSON) Load() (c []internal.Customer, err error) {
 	// decode the json file
 	var cs []CustomerJSON
 	err = json.NewDecoder(l.file).Decode(&cs)

@@ -98,20 +98,20 @@ func (a *ApplicationMigrate) SetUp() (err error) {
 		return
 	}
 	// - migrators
-	ldCustomer := loader.NewLoaderCustomerJSON(a.fileCustomer)
-	rpCustomer := repository.NewRepositoryCustomerMySQL(a.database)
+	ldCustomer := loader.NewCustomersJSON(a.fileCustomer)
+	rpCustomer := repository.NewCustomersMySQL(a.database)
 	mgCustomer := migrator.NewMigratorCustomerToDatabase(ldCustomer, rpCustomer)
 
-	ldProduct := loader.NewLoaderProductJSON(a.fileProduct)
-	rpProduct := repository.NewRepositoryProductMySQL(a.database)
+	ldProduct := loader.NewProductsJSON(a.fileProduct)
+	rpProduct := repository.NewProductsMySQL(a.database)
 	mgProduct := migrator.NewMigratorProductToDatabase(ldProduct, rpProduct)
 
-	ldInvoice := loader.NewLoaderInvoiceJSON(a.fileInvoice)
-	rpInvoice := repository.NewRepositoryInvoiceMySQL(a.database)
+	ldInvoice := loader.NewInvoicesJSON(a.fileInvoice)
+	rpInvoice := repository.NewInvoicesMySQL(a.database)
 	mgInvoice := migrator.NewMigratorInvoiceToDatabase(ldInvoice, rpInvoice)
 
-	ldSale := loader.NewLoaderSaleJSON(a.fileSales)
-	rpSale := repository.NewRepositorySaleMySQL(a.database)
+	ldSale := loader.NewSalesJSON(a.fileSales)
+	rpSale := repository.NewSalesMySQL(a.database)
 	mgSale := migrator.NewMigratorSaleToDatabase(ldSale, rpSale)
 
 	a.migrators = []internal.Migrator{

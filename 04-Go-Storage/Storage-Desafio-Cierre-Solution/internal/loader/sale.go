@@ -6,13 +6,13 @@ import (
 	"os"
 )
 
-// NewLoaderSaleJSON returns a new pointer to a LoaderSaleJSON struct.
-func NewLoaderSaleJSON(file *os.File) *LoaderSaleJSON {
-	return &LoaderSaleJSON{file: file}
+// NewSalesJSON returns a new pointer to a SalesJSON struct.
+func NewSalesJSON(file *os.File) *SalesJSON {
+	return &SalesJSON{file: file}
 }
 
-// LoaderSaleJSON is an struct that implements the LoaderSale interface.
-type LoaderSaleJSON struct {
+// SalesJSON is an struct that implements the LoaderSale interface.
+type SalesJSON struct {
 	// file is the file to handle read and write operations.
 	file *os.File
 }
@@ -26,7 +26,7 @@ type SaleJSON struct {
 }
 
 // Load loads the sale data from the json file.
-func (l *LoaderSaleJSON) Load() (s []internal.Sale, err error) {
+func (l *SalesJSON) Load() (s []internal.Sale, err error) {
 	// decode the json file
 	var ss []SaleJSON
 	err = json.NewDecoder(l.file).Decode(&ss)

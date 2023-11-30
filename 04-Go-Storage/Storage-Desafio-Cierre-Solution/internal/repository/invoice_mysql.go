@@ -2,24 +2,23 @@ package repository
 
 import (
 	"database/sql"
-	"errors"
 
 	"app/internal"
 )
 
-// NewRepositoryInvoiceMySQL creates new mysql repository for invoice entity.
-func NewRepositoryInvoiceMySQL(db *sql.DB) *RepositoryInvoiceMySQL {
-	return &RepositoryInvoiceMySQL{db}
+// NewInvoicesMySQL creates new mysql repository for invoice entity.
+func NewInvoicesMySQL(db *sql.DB) *InvoicesMySQL {
+	return &InvoicesMySQL{db}
 }
 
-// RepositoryInvoiceMySQL is the MySQL repository implementation for invoice entity.
-type RepositoryInvoiceMySQL struct {
+// InvoicesMySQL is the MySQL repository implementation for invoice entity.
+type InvoicesMySQL struct {
 	// db is the database connection.
 	db *sql.DB
 }
 
 // FindAll returns all invoices from the database.
-func (r *RepositoryInvoiceMySQL) FindAll() (i []internal.Invoice, err error) {
+func (r *InvoicesMySQL) FindAll() (i []internal.Invoice, err error) {
 	// execute the query
 	rows, err := r.db.Query("SELECT `id`, `datetime`, `total`, `customer_id` FROM invoices")
 	if err != nil {
@@ -38,32 +37,23 @@ func (r *RepositoryInvoiceMySQL) FindAll() (i []internal.Invoice, err error) {
 		// append the invoice to the slice
 		i = append(i, iv)
 	}
+	err = rows.Err()
+	if err != nil {
+		return
+	}
 
 	return
 }
 
 // Save saves the invoice into the database.
-func (r *RepositoryInvoiceMySQL) Save(i *internal.Invoice) (err error) {
-	// prepare the statement
-	stmt, err := r.db.Prepare("INSERT INTO invoices (`datetime`, `total`, `customer_id`) VALUES (?, ?, ?)")
+func (r *InvoicesMySQL) Save(i *internal.Invoice) (err error) {
+	// execute the query
+	res, err := r.db.Exec(
+		"INSERT INTO invoices (`datetime`, `total`, `customer_id`) VALUES (?, ?, ?)",
+		(*i).Datetime, (*i).Total, (*i).CustomerId,
+	)
 	if err != nil {
 		return err
-	}
-	defer stmt.Close()
-
-	// execute the statement
-	res, err := stmt.Exec((*i).Datetime, (*i).Total, (*i).CustomerId)
-	if err != nil {
-		return err
-	}
-
-	// check the affected rows
-	affected, err := res.RowsAffected()
-	if err != nil {
-		return err
-	}
-	if affected == 0 {
-		return errors.New("no rows affected")
 	}
 
 	// get the last inserted id
@@ -79,8 +69,8 @@ func (r *RepositoryInvoiceMySQL) Save(i *internal.Invoice) (err error) {
 }
 
 // UpdateAllTotal updates all invoices total
-func (r *RepositoryInvoiceMySQL) UpdateAllTotal() (err error) {
-	// execute the statement
+func (r *InvoicesMySQL) UpdateAllTotal() (err error) {
+	// execute the query
 	_, err = r.db.Exec(
 		"UPDATE `invoices` as i SET i.`total` = " +
 		"(SELECT SUM(s.`quantity` * p.`price`) FROM `sales` s INNER JOIN `products` p ON s.`product_id` = p.`id` " +

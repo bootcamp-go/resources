@@ -6,13 +6,13 @@ import (
 	"os"
 )
 
-// NewLoaderInvoiceJSON returns a new pointer to a LoaderInvoiceJSON struct.
-func NewLoaderInvoiceJSON(file *os.File) *LoaderInvoiceJSON {
-	return &LoaderInvoiceJSON{file: file}
+// NewInvoicesJSON returns a new pointer to a InvoicesJSON struct.
+func NewInvoicesJSON(file *os.File) *InvoicesJSON {
+	return &InvoicesJSON{file: file}
 }
 
-// LoaderInvoiceJSON is an struct that implements the LoaderInvoice interface.
-type LoaderInvoiceJSON struct {
+// InvoicesJSON is an struct that implements the LoaderInvoice interface.
+type InvoicesJSON struct {
 	// file is the file to handle read and write operations.
 	file *os.File
 }
@@ -26,7 +26,7 @@ type InvoiceJSON struct {
 }
 
 // Load loads the invoice data from the json file.
-func (l *LoaderInvoiceJSON) Load() (i []internal.Invoice, err error) {
+func (l *InvoicesJSON) Load() (i []internal.Invoice, err error) {
 	// decode the json file
 	var is []InvoiceJSON
 	err = json.NewDecoder(l.file).Decode(&is)

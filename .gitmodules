@@ -1,0 +1,3 @@
+[submodules "04-Go-Storage\storage-api-exercise"]
+    path = 04-Go-Storage/storage-api-exercise
+    url = https://github.com/bootcamp-go/storage-api-exercise

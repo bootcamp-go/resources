@@ -8,13 +8,13 @@ import (
 	"app/platform/web/response"
 )
 
-// NewHandlerSale returns a new HandlerSale
-func NewHandlerSale(sv internal.ServiceSale) *HandlerSale {
-	return &HandlerSale{sv: sv}
+// NewSalesDefault returns a new SalesDefault
+func NewSalesDefault(sv internal.ServiceSale) *SalesDefault {
+	return &SalesDefault{sv: sv}
 }
 
-// HandlerSale is a struct that returns the sale handlers
-type HandlerSale struct {
+// SalesDefault is a struct that returns the sale handlers
+type SalesDefault struct {
 	// sv is the sale's service
 	sv internal.ServiceSale
 }
@@ -28,7 +28,7 @@ type SaleJSON struct {
 }
 
 // GetAll returns all sales
-func (h *HandlerSale) GetAll() http.HandlerFunc {
+func (h *SalesDefault) GetAll() http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		// request
 		// ...
@@ -65,7 +65,7 @@ type RequestBodySale struct {
 	InvoiceId int `json:"invoice_id"`
 }
 // Create creates a new sale
-func (h *HandlerSale) Create() http.HandlerFunc {
+func (h *SalesDefault) Create() http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		// request
 		// - body

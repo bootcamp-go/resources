@@ -2,25 +2,25 @@ package service
 
 import "app/internal"
 
-// NewServiceProductDefault creates new default service for product entity.
-func NewServiceProductDefault(rp internal.RepositoryProduct) *ServiceProductDefault {
-	return &ServiceProductDefault{rp}
+// NewProductsDefault creates new default service for product entity.
+func NewProductsDefault(rp internal.RepositoryProduct) *ProductsDefault {
+	return &ProductsDefault{rp}
 }
 
-// ServiceProductDefault is the default service implementation for product entity.
-type ServiceProductDefault struct {
+// ProductsDefault is the default service implementation for product entity.
+type ProductsDefault struct {
 	// rp is the repository for product entity.
 	rp internal.RepositoryProduct
 }
 
 // FindAll returns all products.
-func (s *ServiceProductDefault) FindAll() (p []internal.Product, err error) {
+func (s *ProductsDefault) FindAll() (p []internal.Product, err error) {
 	p, err = s.rp.FindAll()
 	return
 }
 
 // Save saves the product.
-func (s *ServiceProductDefault) Save(p *internal.Product) (err error) {
+func (s *ProductsDefault) Save(p *internal.Product) (err error) {
 	err = s.rp.Save(p)
 	return
 }

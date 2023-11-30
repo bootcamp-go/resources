@@ -8,13 +8,13 @@ import (
 	"app/platform/web/response"
 )
 
-// NewHandlerProduct returns a new HandlerProduct
-func NewHandlerProduct(sv internal.ServiceProduct) *HandlerProduct {
-	return &HandlerProduct{sv: sv}
+// NewProductsDefault returns a new ProductsDefault
+func NewProductsDefault(sv internal.ServiceProduct) *ProductsDefault {
+	return &ProductsDefault{sv: sv}
 }
 
-// HandlerProduct is a struct that returns the product handlers
-type HandlerProduct struct {
+// ProductsDefault is a struct that returns the product handlers
+type ProductsDefault struct {
 	// sv is the product's service
 	sv internal.ServiceProduct
 }
@@ -26,7 +26,7 @@ type ProductJSON struct {
 	Price       float64 `json:"price"`
 }
 // GetAll returns all products
-func (h *HandlerProduct) GetAll() http.HandlerFunc {
+func (h *ProductsDefault) GetAll() http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		// request
 		// ...
@@ -61,7 +61,7 @@ type RequestBodyProduct struct {
 	Price       float64 `json:"price"`
 }
 // Create creates a new product
-func (h *HandlerProduct) Create() http.HandlerFunc {
+func (h *ProductsDefault) Create() http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		// request
 		// - body

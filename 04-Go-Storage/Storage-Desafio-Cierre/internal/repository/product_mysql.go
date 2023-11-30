@@ -2,24 +2,23 @@ package repository
 
 import (
 	"database/sql"
-	"errors"
 
 	"app/internal"
 )
 
-// NewRepositoryProductMySQL creates new mysql repository for product entity.
-func NewRepositoryProductMySQL(db *sql.DB) *RepositoryProductMySQL {
-	return &RepositoryProductMySQL{db}
+// NewProductsMySQL creates new mysql repository for product entity.
+func NewProductsMySQL(db *sql.DB) *ProductsMySQL {
+	return &ProductsMySQL{db}
 }
 
-// RepositoryProductMySQL is the MySQL repository implementation for product entity.
-type RepositoryProductMySQL struct {
+// ProductsMySQL is the MySQL repository implementation for product entity.
+type ProductsMySQL struct {
 	// db is the database connection.
 	db *sql.DB
 }
 
 // FindAll returns all products from the database.
-func (r *RepositoryProductMySQL) FindAll() (p []internal.Product, err error) {
+func (r *ProductsMySQL) FindAll() (p []internal.Product, err error) {
 	// execute the query
 	rows, err := r.db.Query("SELECT `id`, `description`, `price` FROM products")
 	if err != nil {
@@ -38,32 +37,23 @@ func (r *RepositoryProductMySQL) FindAll() (p []internal.Product, err error) {
 		// append the product to the slice
 		p = append(p, pr)
 	}
+	err = rows.Err()
+	if err != nil {
+		return
+	}
 
 	return
 }
 
 // Save saves the product into the database.
-func (r *RepositoryProductMySQL) Save(p *internal.Product) (err error) {
-	// prepare the statement
-	stmt, err := r.db.Prepare("INSERT INTO products (`description`, `price`) VALUES (?, ?)")
+func (r *ProductsMySQL) Save(p *internal.Product) (err error) {
+	// execute the query
+	res, err := r.db.Exec(
+		"INSERT INTO products (`description`, `price`) VALUES (?, ?)",
+		(*p).Description, (*p).Price,
+	)
 	if err != nil {
 		return err
-	}
-	defer stmt.Close()
-
-	// execute the statement
-	res, err := stmt.Exec((*p).Description, (*p).Price)
-	if err != nil {
-		return err
-	}
-
-	// check the affected rows
-	rowsAffected, err := res.RowsAffected()
-	if err != nil {
-		return err
-	}
-	if rowsAffected != 1 {
-		return errors.New("rows affected should be 1")
 	}
 
 	// get the last inserted id

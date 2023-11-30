@@ -9,13 +9,13 @@ import (
 	"app/platform/web/response"
 )
 
-// NewHandlerCustomer returns a new HandlerCustomer
-func NewHandlerCustomer(sv internal.ServiceCustomer) *HandlerCustomer {
-	return &HandlerCustomer{sv: sv}
+// NewCustomersDefault returns a new CustomersDefault
+func NewCustomersDefault(sv internal.ServiceCustomer) *CustomersDefault {
+	return &CustomersDefault{sv: sv}
 }
 
-// HandlerCustomer is a struct that returns the customer handlers
-type HandlerCustomer struct {
+// CustomersDefault is a struct that returns the customer handlers
+type CustomersDefault struct {
 	// sv is the customer's service
 	sv internal.ServiceCustomer
 }
@@ -28,7 +28,7 @@ type CustomerJSON struct {
 	Condition int    `json:"condition"`
 }
 // GetAll returns all customers
-func (h *HandlerCustomer) GetAll() http.HandlerFunc {
+func (h *CustomersDefault) GetAll() http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		// request
 		// ...
@@ -66,7 +66,7 @@ type RequestBodyCustomer struct {
 	Condition int    `json:"condition"`
 }
 // Create creates a new customer
-func (h *HandlerCustomer) Create() http.HandlerFunc {
+func (h *CustomersDefault) Create() http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		// request
 		// - body

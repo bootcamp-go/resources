@@ -2,25 +2,25 @@ package service
 
 import "app/internal"
 
-// NewServiceInvoiceDefault creates new default service for invoice entity.
-func NewServiceInvoiceDefault(rp internal.RepositoryInvoice) *ServiceInvoiceDefault {
-	return &ServiceInvoiceDefault{rp}
+// NewInvoicesDefault creates new default service for invoice entity.
+func NewInvoicesDefault(rp internal.RepositoryInvoice) *InvoicesDefault {
+	return &InvoicesDefault{rp}
 }
 
-// ServiceInvoiceDefault is the default service implementation for invoice entity.
-type ServiceInvoiceDefault struct {
+// InvoicesDefault is the default service implementation for invoice entity.
+type InvoicesDefault struct {
 	// rp is the repository for invoice entity.
 	rp internal.RepositoryInvoice
 }
 
 // FindAll returns all invoices.
-func (s *ServiceInvoiceDefault) FindAll() (i []internal.Invoice, err error) {
+func (s *InvoicesDefault) FindAll() (i []internal.Invoice, err error) {
 	i, err = s.rp.FindAll()
 	return
 }
 
 // Save saves the invoice.
-func (s *ServiceInvoiceDefault) Save(i *internal.Invoice) (err error) {
+func (s *InvoicesDefault) Save(i *internal.Invoice) (err error) {
 	err = s.rp.Save(i)
 	return
 }

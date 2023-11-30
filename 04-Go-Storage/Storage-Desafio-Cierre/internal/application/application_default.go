@@ -68,20 +68,20 @@ func (a *ApplicationDefault) SetUp() (err error) {
 		return
 	}
 	// - repository
-	rpCustomer := repository.NewRepositoryCustomerMySQL(a.db)
-	rpProduct := repository.NewRepositoryProductMySQL(a.db)
-	rpInvoice := repository.NewRepositoryInvoiceMySQL(a.db)
-	rpSale := repository.NewRepositorySaleMySQL(a.db)
+	rpCustomer := repository.NewCustomersMySQL(a.db)
+	rpProduct := repository.NewProductsMySQL(a.db)
+	rpInvoice := repository.NewInvoicesMySQL(a.db)
+	rpSale := repository.NewSalesMySQL(a.db)
 	// - service
-	svCustomer := service.NewServiceCustomerDefault(rpCustomer)
-	svProduct := service.NewServiceProductDefault(rpProduct)
-	svInvoice := service.NewServiceInvoiceDefault(rpInvoice)
-	svSale := service.NewServiceSaleDefault(rpSale)
+	svCustomer := service.NewCustomersDefault(rpCustomer)
+	svProduct := service.NewProductsDefault(rpProduct)
+	svInvoice := service.NewInvoicesDefault(rpInvoice)
+	svSale := service.NewSalesDefault(rpSale)
 	// - handler
-	hdCustomer := handler.NewHandlerCustomer(svCustomer)
-	hdProduct := handler.NewHandlerProduct(svProduct)
-	hdInvoice := handler.NewHandlerInvoice(svInvoice)
-	hdSale := handler.NewHandlerSale(svSale)
+	hdCustomer := handler.NewCustomersDefault(svCustomer)
+	hdProduct := handler.NewProductsDefault(svProduct)
+	hdInvoice := handler.NewInvoicesDefault(svInvoice)
+	hdSale := handler.NewSalesDefault(svSale)
 
 	// routes
 	// - router

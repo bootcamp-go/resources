@@ -2,7 +2,8 @@ package main
 
 import (
 	"fmt"
-	"sprint-1/internal/application"
+
+	"github.com/usuario/repositorio/internal/application"
 
 	"github.com/go-sql-driver/mysql"
 )

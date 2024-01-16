@@ -47,13 +47,13 @@ type ServerChi struct {
 // Run runs the server
 func (s *ServerChi) Run() (err error) {
 	// dependencies
-	// - database
+	// - database: connection
 	db, err := sql.Open("mysql", s.mysqlDSN)
 	if err != nil {
 		return
 	}
 	defer db.Close()
-
+	// - database: ping
 	err = db.Ping()
 	if err != nil {
 		return
@@ -65,14 +65,50 @@ func (s *ServerChi) Run() (err error) {
 	router.Use(middleware.Logger)
 	router.Use(middleware.Recoverer)
 	//   endpoints
-	//   ... sellers
-	//   ... warehouses
-	//   ... sections
-	//   ... products
-	//   ... employees
-	//   ... buyers
+	//     sellers
+	buildSellersRouter(router)
+	//     warehouses
+	buildWarehousesRouter(router)
+	//     sections
+	buildSectionsRouter(router)
+	//     products
+	buildProductsRouter(router)
+	//     employees
+	buildEmployeesRouter(router)
+	//     buyers
+	buildBuyersRouter(router)
 
 	// run
 	err = http.ListenAndServe(s.addr, router)
 	return
+}
+
+// buildSellersRouter builds the router for the sellers endpoints
+func buildSellersRouter(router *chi.Mux) {
+	// ...
+}
+
+// buildWarehousesRouter builds the router for the warehouses endpoints
+func buildWarehousesRouter(router *chi.Mux) {
+	// ...
+}
+
+// buildSectionsRouter builds the router for the sections endpoints
+func buildSectionsRouter(router *chi.Mux) {
+	// ...
+}
+
+// buildProductsRouter builds the router for the products endpoints
+func buildProductsRouter(router *chi.Mux) {
+	// ...
+}
+
+// buildEmployeesRouter builds the router for the employees endpoints
+func buildEmployeesRouter(router *chi.Mux) {
+	// ...
+}
+
+// buildBuyersRouter builds the router for the buyers endpoints
+func buildBuyersRouter(router *chi.Mux) {
+	// ...
 }

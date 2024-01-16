@@ -1,6 +1,6 @@
 package service
 
-import "sprint-1/internal"
+import "github.com/usuario/repositorio/internal"
 
 // NewEmployeeDefault creates a new instance of the employee service
 func NewEmployeeDefault(rp internal.EmployeeRepository) *EmployeeDefault {

@@ -2,7 +2,8 @@ package handler
 
 import (
 	"net/http"
-	"sprint-1/internal"
+
+	"github.com/usuario/repositorio/internal"
 )
 
 // NewWarehouseDefault creates a new instance of the warehouse handler

@@ -1,6 +1,6 @@
 package service
 
-import "sprint-1/internal"
+import "github.com/usuario/repositorio/internal"
 
 // NewSectionDefault creates a new instance of the section service
 func NewSectionDefault(rp internal.SectionRepository) *SectionDefault {

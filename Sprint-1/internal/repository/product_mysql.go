@@ -3,7 +3,8 @@ package repository
 import (
 	"database/sql"
 	"errors"
-	"sprint-1/internal"
+
+	"github.com/usuario/repositorio/internal"
 
 	"github.com/go-sql-driver/mysql"
 )

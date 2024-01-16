@@ -1,6 +1,6 @@
 package service
 
-import "sprint-1/internal"
+import "github.com/usuario/repositorio/internal"
 
 // NewBuyerDefault creates a new instance of the buyer service
 func NewBuyerDefault(rp internal.BuyerRepository) *BuyerDefault {

@@ -1,6 +1,6 @@
 package service
 
-import "sprint-1/internal"
+import "github.com/usuario/repositorio/internal"
 
 // NewProductDefault creates a new instance of the product service
 func NewProductDefault(rp internal.ProductRepository) *ProductDefault {

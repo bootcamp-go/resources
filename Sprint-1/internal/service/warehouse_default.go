@@ -1,6 +1,6 @@
 package service
 
-import "sprint-1/internal"
+import "github.com/usuario/repositorio/internal"
 
 // NewWarehouseDefault creates a new instance of the warehouse service
 func NewWarehouseDefault(rp internal.WarehouseRepository) *WarehouseDefault {

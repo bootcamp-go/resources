@@ -5,8 +5,9 @@ import (
 	"net/http"
 
 	"app/internal"
-	"app/platform/web/request"
-	"app/platform/web/response"
+
+	"github.com/bootcamp-go/web/request"
+	"github.com/bootcamp-go/web/response"
 )
 
 // NewCustomersDefault returns a new CustomersDefault

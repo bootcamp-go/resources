@@ -98,7 +98,7 @@
 {"id":98,"product_id":35,"invoice_id":86,"quantity":28},
 {"id":99,"product_id":98,"invoice_id":36,"quantity":35},
 {"id":100,"product_id":15,"invoice_id":85,"quantity":16},
-{"id":100,"product_id":72,"invoice_id":56,"quantity":8},
+{"id":101,"product_id":72,"invoice_id":56,"quantity":8},
 {"id":102,"product_id":94,"invoice_id":39,"quantity":43},
 {"id":103,"product_id":67,"invoice_id":3,"quantity":17},
 {"id":104,"product_id":100,"invoice_id":61,"quantity":28},
